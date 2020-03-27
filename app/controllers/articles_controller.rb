@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def edit
-
+		#test for edit purposes
 	end
 
 end
