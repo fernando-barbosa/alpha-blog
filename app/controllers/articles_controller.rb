@@ -17,24 +17,19 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(article_params)
-
 		if @article.save
-			flash[:notice] = "Successfully created the article."
-			redirect_to @article
+			notify_and_redirect("Successfully updated the article.")
 		else
 			render 'new'
 		end
-
 	end
 
 	def update
 		if @article.update(article_params)
-			flash[:notice] = "Successfully updated the article."
-			redirect_to @article
+			notify_and_redirect("Successfully updated the article.")
 		else
 			render 'edit'
 		end
-
 	end
 
 	def destroy
@@ -50,6 +45,11 @@ class ArticlesController < ApplicationController
 
 	def article_params
 		params.require(:article).permit(:title, :description)
+	end
+
+	def notify_and_redirect(string)
+		flash[:notice] = string
+		redirect_to @article
 	end
 
 end
